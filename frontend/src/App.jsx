@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 function App() {
     const [email, setEmail] = useState("");
@@ -52,13 +54,13 @@ function App() {
             const token = localStorage.getItem("token");
 
             const response = await fetch(
-                "http://localhost:5000/api/employees",
+                `${API_BASE_URL}/api/employees`,
                 {
                     headers: {
-                        Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${token}`
                     }
                 }
-            );
+                );
 
             const data = await response.json();
 
@@ -84,8 +86,7 @@ function App() {
 
     const loadPeopleEmployees = async () => {
         try {
-            const response = await fetch(
-                "http://localhost:5000/api/zoho/people/employees",
+            const response = await fetch(`${API_BASE_URL}/api/zoho/people/employees`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -119,8 +120,7 @@ function App() {
         try {
             const token = localStorage.getItem("token");
 
-            const response = await fetch(
-                "http://localhost:5000/api/users",
+            const response = await fetch(`${API_BASE_URL}/api/users`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -155,8 +155,7 @@ function App() {
         try {
             const token = localStorage.getItem("token");
 
-            const response = await fetch(
-                "http://localhost:5000/api/audit-logs",
+            const response = await fetch(`${API_BASE_URL}/api/audit-logs`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -203,8 +202,7 @@ function App() {
             }
 
             try {
-                const response = await fetch(
-                    "http://localhost:5000/api/auth/me",
+                const response = fetch(`${API_BASE_URL}/api/auth/me`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -241,8 +239,7 @@ function App() {
         e.preventDefault();
 
         try {
-            const response = await fetch(
-                "http://localhost:5000/api/auth/login",
+            const response = await fetch(`${API_BASE_URL}/api/auth/login`,
                 {
                     method: "POST",
                     headers: {
@@ -294,8 +291,7 @@ function App() {
         try {
             const token = localStorage.getItem("token");
 
-            const response = await fetch(
-                "http://localhost:5000/api/employees",
+            const response = await fetch(`${API_BASE_URL}/api/employees`,
                 {
                     method: "POST",
                     headers: {
@@ -341,8 +337,7 @@ function App() {
         try {
             const token = localStorage.getItem("token");
 
-            const response = await fetch(
-                `http://localhost:5000/api/employees/${editingEmployeeId}`,
+            const response = await fetch(`${API_BASE_URL}/api/employees/${editingEmployeeId}`,
                 {
                     method: "PUT",
                     headers: {
@@ -490,8 +485,7 @@ function App() {
                         localStorage.getItem("token");
 
                     const response =
-                        await fetch(
-                            "http://localhost:5000/api/zoho/leads",
+                        await fetch(`${API_BASE_URL}/api/zoho/leads`,
                             {
                                 headers: {
                                     Authorization: `Bearer ${token}`
@@ -1054,8 +1048,7 @@ function App() {
                                                                                 );
 
                                                                             const response =
-                                                                                await fetch(
-                                                                                    `http://localhost:5000/api/employees/${employee.employee_id}`,
+                                                                                await fetch(`${API_BASE_URL}/api/employees/${employee.employee_id}`,
                                                                                     {
                                                                                         method: "DELETE",
                                                                                         headers: {
